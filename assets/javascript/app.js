@@ -64,3 +64,9 @@ questions = [
         // Deathwing was the leader of the black dragonflight before turning against the other dragon aspects during the War of the Ancients.
     },
 ]
+
+// Trivia game begins
+$("#start").click(function() {
+
+});
+
