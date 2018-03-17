@@ -2,6 +2,10 @@ setTimeout(oneMinute, 1000);
 setTimeout(thirtySeconds, 1000 * 30);
 setTimeout(timeUp, 1000 * 60)
 
+/* PSEUDO CODE
+  link timer start to click event of #start button in HTML
+*/
+
 function oneMinute() {
   // begins the clock for the game length
   $("#time-left").append("<h3>One minute on the clock!</h3>");

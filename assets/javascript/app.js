@@ -65,7 +65,15 @@ questions = [
     },
 ]
 
-// tracks correct answers
+/* PSEUDO CODE
 
-$
+1. validate that each radio button selected on each question is or is not === the correct answer
+
+2. make a function that calculates how many wrong vs right the user got
+
+3. display those variables to the user
+
+4. restart the quiz and timer
+
+*/
 
