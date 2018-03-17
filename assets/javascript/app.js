@@ -65,8 +65,7 @@ questions = [
     },
 ]
 
-// Trivia game begins
-$("#start").click(function() {
+// tracks correct answers
 
-});
+$
 
