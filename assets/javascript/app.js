@@ -13,52 +13,63 @@ var questionNo = 0;
 var questions = [{
     questionNo: "Who is the apprentice of Medivh the prophet?",
     answers: ["Tyrande","Khadgar","Arthas Menethil","Alexstrasza"],
-    image: "assets/image/khadgar.jpg",
-    correctInd: 1
-}, {
+    image: "assets/images/khadgar.jpg",
+    answerIndex: 1
+}, 
+{
     questionNo: "Who is the dragon aspect of time?",
     answers: ["Nozdormu","Ysera","Chromie","Thrall"],
-    image: "assets/image/nozdormu.jpg",
-    correctInd: 0
-}, {
+    image: "assets/images/nozdormu.jpg",
+    answerIndex: 0
+}, 
+{
     questionNo: "What is the level cap in the Wrath of the Lich King expansion?",
     answers: ["75","60","80","55"],
-    image: "assets/image/wrath.jpg",
-    correctInd: 2
-}, {
+    image: "/assets/images/wrath.jpg",
+    answerIndex: 2
+}, 
+{
     questionNo: "Jaina Proudmoore is the founder and former lady of what region in Kalimdor?",
     answers: ["Orgrimmar","Uldum","Theramore","Silithus"],
-    image: "assets/image/jaina.jpg",
-    correctInd: 2
-}, {
+    image: "assets/images/jaina.jpg",
+    answerIndex: 2
+}, 
+{
     questionNo: "What is the name of the Lich King's sword?",
     answers: ["Frostmourne","Glamdring","Taeshalach","Light's Vengeance"],
-    image: "assets/image/frostmourne.jpg",
-    correctInd: 0
- }, {
+    image: "assets/images/frostmourne.jpg",
+    answerIndex: 0
+ }, 
+ {
     questionNo: "Azeroth is NOT the native home for which horde race?",
     answers: ["Orc","Tauren","Goblins", "Draenei"],
-    image: "assets/image/orc.jpg",
-    correctInd: 0
-}, {
+    image: "assets/images/orc.jpg",
+    answerIndex: 0
+}, 
+{
     questionNo: "Who is a prominent Night Elf leader and high priestess of Elune?",
     answers: ["Tyrande Whisperwind","Illidan Stormrage","Queen Azshara","Jarod Shadowsong"],
-    image: "assets/image/tyrande.jpg",
-    correctInd: 0
-}, {
+    image: "assets/images/tyrande.jpg",
+    answerIndex: 0
+}, 
+{
     questionNo: "Which of these capital cities is home to the Alliance?",
     answers: ["Silvermoon City","Thunder Bluff","Stormwind City","Garadar"],
-    image: "assets/image/stormwind.png",
-    correctInd: 2
-}, {
+    image: "assets/images/stormwind.png",
+    answerIndex: 2
+}, 
+{
     questionNo: "Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?",
     answers: ["Black","Bronze","Red","Fire"],
-    image: "assets/image/deathwing.jpg",
-    correctInd: 0
+    image: "assets/images/deathwing.jpg",
+    answerIndex: 0
 }];
 
+var bgmMusic = new Audio("assets/sounds/wow_maintitle.mp3")
+
 // trivia game begins!
-$("#start_button").click(function() {
+$("#start").click(function() {
+bgmMusic.play();
 $(this).hide();
 // starting the counter
 counter = setInterval(timer, 1000); 
@@ -95,21 +106,20 @@ questionNo++;
 
  $("#answers").click("button", function(e) {
     userChoice = $(this).data("id");
-    questions[0].correctInd;
+    questions[0].answerIndex;
 
-    if (userChoice != questions[0].correctInd) {
+    if (userChoice != questions[0].answerIndex) {
 
-    $("#answers").text("Wrong Answer! The correct answer is" + questions[0].correctInd + ".");
-    wrong++;
+        $("#answers").text("Wrong Answer! The correct answer is" + questions[0].answerIndex + ".");
+        wrong++;
         //  I want to pull the image from the index to display in the div. This is not working yet.
-        $("#image_display").append(image[0]);
+        $("#image").prepend("<img src=" + "assets/images/nozdormu.jpg" + ">");
 
-    } else if (userChoice === questions[0].correctInd) {
-    $("#answers").text("Correct!");
-    correct++;
+    } else if (userChoice === questions[0].answerIndex) {
+        $("#answers").text("Correct!");
+        correct++;
         //  I want to pull the image from the index to display in the div. This is not working yet.
-        $("#image_display").append(image[0]);
+        $("#image").prepend("<img src=" + "assets/images/nozdormu.jpg" + ">");
     }
 });
-
 
