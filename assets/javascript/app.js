@@ -9,6 +9,8 @@ var left = 0;
 
 var questionNo = 0;
 
+var count = 30;
+
 // This array containts all of our questionNos and answer options, as well as correct answers.
 var questions = [{
     questionNo: "Who is the apprentice of Medivh the prophet?",
@@ -76,8 +78,7 @@ counter = setInterval(timer, 1000);
 startGame();
 }); 
 
-function timer(){
-var count = 30;
+function timer() {
 count--;
 if (count <= 0) {
  clearInterval(counter);
