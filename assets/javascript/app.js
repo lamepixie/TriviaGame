@@ -1,79 +1,115 @@
-// This array containts all of our questions and answer options, as well as correct answers.
-questions = [
-    {
-        q: "Who is the apprentice of Medivh the prophet?",
-        ao: ["Tyrande","Khadgar","Arthas Menethil","Alexstrasza"],
-        a: "Khadgar",
-        image: "assets/images/khadgar.jpg"
-        // Khadgar is now one of the most powerful mages to have ever lived, and got his beginnings by being an apprentice to Medivh
-    },
-    {
-        q: "Who is the dragon aspect of time?",
-        ao: ["Nozdormu","Ysera","Chromie","Thrall"],
-        a: "Nozdormu",
-        image: "assets/images/nozdormu.jpg"
-        // Nozdormu is the bronze dragon aspect, and protector of the sands of time.
-    },
-    {
-        q: "What is the level cap in the Wrath of the Lich King expansion?",
-        ao: ["75","60","80","55"],
-        a: "80",
-        image: "assets/images/wrath.jpg"
-        // Level cap during Wrath was 80. The game now levels to 110 from the Legion expansion.
-    },
-    {
-        q: "Jaina Proudmoore is the founder and former lady of what region in Kalimdor?",
-        ao: ["Orgrimmar","Uldum","Theramore","Silithus"],
-        a: "Theramore",
-        image: "assets/images/jaina.jpg"
-        // Jaina is the founder of Theramore Isle
-    },
-    {
-        q: "What is the name of the Lich King's sword?",
-        ao: ["Frostmourne","Glamdring","Taeshalach","Light's Vengeance"],
-        a: "Frostmourne",
-        image: "assets/images/frostmourne.jpg"
-        // Arthas' famous sword is known as Frostmourne
-    },
-    {
-        q: "Azeroth is NOT the native home for which horde race?",
-        ao: ["Orc","Tauren","Goblins", "Draenei"],
-        a: "Orc",
-        image: "assets/images/orc.jpg"
-        // Orc's entered Azeroth from Draenor through the dark portal
-    },
-    {
-        q: "Who is a prominent Night Elf leader and high priestess of Elune?",
-        ao: ["Tyrande Whisperwind","Illidan Stormrage","Queen Azshara","Jarod Shadowsong"],
-        a: "Tyrande Whisperwind",
-        image: "assets/images/tyrande.jpg"
-        // Tyrande is the chosen high priestess of the godess Elune and a prominent leader of the Night Elf race.
-    },
-    {
-        q: "Which of these capital cities is home to the Alliance?",
-        ao: ["Silvermoon City","Thunder Bluff","Stormwind City","Garadar"],
-        a: "Stormwind City",
-        image: "assets/images/stormwind.png"
-        // Stormwind City is a capital city home to the Alliance, located in Eastern Kingdoms.
-    },
-    {
-        q: "Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?",
-        ao: ["Black","Bronze","Red","Fire"],
-        a: "Black",
-        image: "assets/images/deathwing.jpg"
-        // Deathwing was the leader of the black dragonflight before turning against the other dragon aspects during the War of the Ancients.
-    },
-]
+// variables needed
+var userChoice;
 
-/* PSEUDO CODE
+var correct = 0;
 
-1. validate that each radio button selected on each question is or is not === the correct answer
+var wrong = 0;
 
-2. make a function that calculates how many wrong vs right the user got
+var left = 0;
 
-3. display those variables to the user
+var questionNo = 0;
 
-4. restart the quiz and timer
+// This array containts all of our questionNos and answer options, as well as correct answers.
+var questions = [{
+    questionNo: "Who is the apprentice of Medivh the prophet?",
+    answers: ["Tyrande","Khadgar","Arthas Menethil","Alexstrasza"],
+    image: "assets/image/khadgar.jpg",
+    correctInd: 1
+}, {
+    questionNo: "Who is the dragon aspect of time?",
+    answers: ["Nozdormu","Ysera","Chromie","Thrall"],
+    image: "assets/image/nozdormu.jpg",
+    correctInd: 0
+}, {
+    questionNo: "What is the level cap in the Wrath of the Lich King expansion?",
+    answers: ["75","60","80","55"],
+    image: "assets/image/wrath.jpg",
+    correctInd: 2
+}, {
+    questionNo: "Jaina Proudmoore is the founder and former lady of what region in Kalimdor?",
+    answers: ["Orgrimmar","Uldum","Theramore","Silithus"],
+    image: "assets/image/jaina.jpg",
+    correctInd: 2
+}, {
+    questionNo: "What is the name of the Lich King's sword?",
+    answers: ["Frostmourne","Glamdring","Taeshalach","Light's Vengeance"],
+    image: "assets/image/frostmourne.jpg",
+    correctInd: 0
+ }, {
+    questionNo: "Azeroth is NOT the native home for which horde race?",
+    answers: ["Orc","Tauren","Goblins", "Draenei"],
+    image: "assets/image/orc.jpg",
+    correctInd: 0
+}, {
+    questionNo: "Who is a prominent Night Elf leader and high priestess of Elune?",
+    answers: ["Tyrande Whisperwind","Illidan Stormrage","Queen Azshara","Jarod Shadowsong"],
+    image: "assets/image/tyrande.jpg",
+    correctInd: 0
+}, {
+    questionNo: "Which of these capital cities is home to the Alliance?",
+    answers: ["Silvermoon City","Thunder Bluff","Stormwind City","Garadar"],
+    image: "assets/image/stormwind.png",
+    correctInd: 2
+}, {
+    questionNo: "Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?",
+    answers: ["Black","Bronze","Red","Fire"],
+    image: "assets/image/deathwing.jpg",
+    correctInd: 0
+}];
 
-*/
+// trivia game begins!
+$("#start_button").click(function() {
+$(this).hide();
+// starting the counter
+counter = setInterval(timer, 1000); 
+startGame();
+}); 
+
+function timer(){
+var count = 30;
+count--;
+if (count <= 0) {
+ clearInterval(counter);
+ return;
+}
+// displays time remaining on page
+ $("#timer").html("Time remaining: " + "00:" + count + " secs");
+}
+
+// displays our trivia question and answer options to the user
+function startGame() {
+$("#questions").html(questions[0].questionNo);
+questionNo++;
+
+  var answersArr = questions[0].answers;
+  var buttonsArr = [];
+
+// loop
+  for (var i = 0; i < answersArr.length; i++) {
+    var button = $("<button>");
+    button.text(answersArr[i]);
+    button.attr("data-id", i);
+    $("#answers").append(button);
+   }
+} 
+
+ $("#answers").click("button", function(e) {
+    userChoice = $(this).data("id");
+    questions[0].correctInd;
+
+    if (userChoice != questions[0].correctInd) {
+
+    $("#answers").text("Wrong Answer! The correct answer is" + questions[0].correctInd + ".");
+    wrong++;
+        //  I want to pull the image from the index to display in the div. This is not working yet.
+        $("#image_display").append(image[0]);
+
+    } else if (userChoice === questions[0].correctInd) {
+    $("#answers").text("Correct!");
+    correct++;
+        //  I want to pull the image from the index to display in the div. This is not working yet.
+        $("#image_display").append(image[0]);
+    }
+});
+
 

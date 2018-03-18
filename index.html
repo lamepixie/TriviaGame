@@ -20,98 +20,15 @@
 
     <body>
 
-        <header>
-            <img src="assets/images/wow.png" align="left">
-            <h1>Trivia of Warcraft</h1>
-        </header>
+        <button id="start_button">begin</button>
 
-        <div class="rules">
-            Click button to start the clock
-            <div id="time-left"></div>
-            <p><button type="button" class="start btn btn-success" value="Begin">Begin Quiz</button></p>
-        </div>
-
-        <div class="quiz">
-            <form>
-                <div class="panel panel-warning Q1">
-                    <p class="panel-heading">Who is the apprentice of Medivh the prophet?</p>
-                    <input type="radio" name="Q1" value="Tyrande">Tyrande<br>
-                    <input type="radio" name="Q1" value="Khadgar">Khdgar<br>
-                    <input type="radio" name="Q1" value="ArthasMenethil">Arthas Menethil<br>
-                    <input type="radio" name="Q1" value="Alexstrasza">Alexstrasza<br>
-                </div>
-
-                <div class="panel panel-warning Q2">
-                    <p class="panel-heading">Who is the dragon aspect of time?</p>
-                    <input type="radio" name="Q2" value="Nozdormu">Nozdormu<br>
-                    <input type="radio" name="Q2" value="Ysera">Ysera<br>
-                    <input type="radio" name="Q2" value="Chromie">Chromie<br>
-                    <input type="radio" name="Q2" value="Thrall">Thrall<br>
-                </div>
-
-                <div class="panel panel-warning Q3">
-                    <p class="panel-heading">What is the level cap in the Wrath of the Lich King expansion?</p>
-                    <input type="radio" name="Q3" value="75">75<br>
-                    <input type="radio" name="Q3" value="60">60<br>
-                    <input type="radio" name="Q3" value="80">80<br>
-                    <input type="radio" name="Q3" value="55">55<br>
-                </div>
-
-                <div class="panel panel-warning Q4">
-                    <p class="panel-heading">Jaina Proudmoore is the founder and former lady of what region in Kalimdor?</p>
-                    <input type="radio" name="Q4" value="Orgrimmar">Orgrimmar<br>
-                    <input type="radio" name="Q4" value="Uldum">Uldum<br>
-                    <input type="radio" name="Q4" value="Theramore">Theramore<br>
-                    <input type="radio" name="Q4" value="Silithus">Silithus<br>
-                </div>
-
-                <div class="panel panel-warning Q5">
-                    <p class="panel-heading">What is the name of the Lich King's sword?</p>
-                    <input type="radio" name="Q5" value="Frostmourne">Frostmourne<br>
-                    <input type="radio" name="Q5" value="Glamdring">Glamdring<br>
-                    <input type="radio" name="Q5" value="Taeshalach">Taeshalach<br>
-                    <input type="radio" name="Q5" value="LightsVengeance">Light's Vengeance<br>
-                </div>
-
-                <div class="panel panel-warning Q6">
-                    <p class="panel-heading">Azeroth is NOT the native home for which horde race?</p>
-                    <input type="radio" name="Q6" value="Orc">Orc<br>
-                    <input type="radio" name="Q6" value="Tauren">Tauren<br>
-                    <input type="radio" name="Q6" value="Goblin">Goblin<br>
-                    <input type="radio" name="Q6" value="Draenei">Draenei<br>
-                </div>
-
-                <div class="panel panel-warning Q7">
-                    <p class="panel-heading">Who is a prominent Night Elf leader and high priestess of Elune?</p>
-                    <input type="radio" name="Q7" value="TyrandeWhisperwind">Tyrande Whisperwind<br>
-                    <input type="radio" name="Q7" value="IllidanStormrage">Illidan Stormrage<br>
-                    <input type="radio" name="Q7" value="QueenAzshara">Queen Azshara<br>
-                    <input type="radio" name="Q7" value="JarodShadowsong">Jarod Shadowsong<br>
-                </div>
-
-                <div class="panel panel-warning Q8">
-                    <p class="panel-heading">Which of these capital cities is home to the Alliance?</p>
-                    <input type="radio" name="Q8" value="SilvermoonCity">Silvermoon City<br>
-                    <input type="radio" name="Q8" value="ThunderBluff">Thunder Bluff<br>
-                    <input type="radio" name="Q8" value="StormwindCity">Stormwind City<br>
-                    <input type="radio" name="Q8" value="Garadar">Garadar<br>
-                </div>
-
-                <div class="panel panel-warning Q9">
-                    <p class="panel-heading">Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?</p>
-                    <input type="radio" name="Q9" value="Black">Black<br>
-                    <input type="radio" name="Q9" value="Bronze">Bronze<br>
-                    <input type="radio" name="Q9" value="Red">Red<br>
-                    <input type="radio" name="Q9" value="Fire">Fire<br>
-                </div>
-
-                <input type="submit button" value="SUBMIT" class="btn btn-info btn-lg">
-            </form>
-            </div>
+        <div id="timer"></div>
+        <div id="questions"></div>
+        <div id="answers"></div>
+        <div id="image"></div>
  
         <!-- Link to our Javascript file -->
         <script src="assets/javascript/app.js"></script>
-        <script src="assets/javascript/timer.js"></script>
 
     </body>
 </html>
