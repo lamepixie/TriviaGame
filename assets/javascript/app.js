@@ -1,126 +1,172 @@
-// variables needed
-var userChoice;
+$("#start").on("click", function() {
+    $("#start").remove();
+    bgmMusic.play();
+    game.loadQuestion();
+})
 
-var correct = 0;
+$(document).on("click", ".answer-button", function(event) {
+    game.clicked(e);
+})
 
-var wrong = 0;
+$(document).on("click", "#reset", function(){
+    game.reset();
+})
 
-var left = 0;
-
-var questionNo = 0;
-
-var count = 30;
-
-// This array containts all of our questionNos and answer options, as well as correct answers.
+// This array containts all of our questions and answer options, as well as correct answers.
 var questions = [{
-    questionNo: "Who is the apprentice of Medivh the prophet?",
+    question: "Who is the apprentice of Medivh the prophet?",
     answers: ["Tyrande","Khadgar","Arthas Menethil","Alexstrasza"],
     image: "assets/images/khadgar.jpg",
-    answerIndex: 1
+    correctAnswer: "Khadgar"
 }, 
-{
-    questionNo: "Who is the dragon aspect of time?",
+{   question: "Who is the dragon aspect of time?",
     answers: ["Nozdormu","Ysera","Chromie","Thrall"],
     image: "assets/images/nozdormu.jpg",
-    answerIndex: 0
+    correctAnswer: "Nozdormu"
 }, 
-{
-    questionNo: "What is the level cap in the Wrath of the Lich King expansion?",
+{   question: "What is the level cap in the Wrath of the Lich King expansion?",
     answers: ["75","60","80","55"],
     image: "/assets/images/wrath.jpg",
-    answerIndex: 2
+    correctAnswer: "80"
 }, 
-{
-    questionNo: "Jaina Proudmoore is the founder and former lady of what region in Kalimdor?",
+{   question: "Jaina Proudmoore is the founder and former lady of what region in Kalimdor?",
     answers: ["Orgrimmar","Uldum","Theramore","Silithus"],
     image: "assets/images/jaina.jpg",
-    answerIndex: 2
+    correctAnswer: "Theramore"
 }, 
-{
-    questionNo: "What is the name of the Lich King's sword?",
+{   question: "What is the name of the Lich King's sword?",
     answers: ["Frostmourne","Glamdring","Taeshalach","Light's Vengeance"],
     image: "assets/images/frostmourne.jpg",
-    answerIndex: 0
+    correctAnswer: "Frostmourne"
  }, 
- {
-    questionNo: "Azeroth is NOT the native home for which horde race?",
+ {  question: "Azeroth is NOT the native home for which horde race?",
     answers: ["Orc","Tauren","Goblins", "Draenei"],
     image: "assets/images/orc.jpg",
-    answerIndex: 0
+    correctAnswer: "Orc"
 }, 
-{
-    questionNo: "Who is a prominent Night Elf leader and high priestess of Elune?",
+{   question: "Who is a prominent Night Elf leader and high priestess of Elune?",
     answers: ["Tyrande Whisperwind","Illidan Stormrage","Queen Azshara","Jarod Shadowsong"],
     image: "assets/images/tyrande.jpg",
-    answerIndex: 0
+    correctAnswer: "Tyrande Whisperwind"
 }, 
-{
-    questionNo: "Which of these capital cities is home to the Alliance?",
+{   question: "Which of these capital cities is home to the Alliance?",
     answers: ["Silvermoon City","Thunder Bluff","Stormwind City","Garadar"],
     image: "assets/images/stormwind.png",
-    answerIndex: 2
+    correctAnswer: "Stormwind City"
 }, 
-{
-    questionNo: "Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?",
+{   question: "Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?",
     answers: ["Black","Bronze","Red","Fire"],
     image: "assets/images/deathwing.jpg",
-    answerIndex: 0
+    correctAnswer: "Black"
 }];
 
 var bgmMusic = new Audio("assets/sounds/wow_maintitle.mp3")
 
-// trivia game begins!
-$("#start").click(function() {
-bgmMusic.play();
-$(this).hide();
-// starting the counter
-counter = setInterval(timer, 1000); 
-startGame();
-}); 
+var game = {
+    questions: questions,
+    currentQuestion: 0,
+    counter: 30,
+    correct: 0,
+    incorrect: 0,
+    unanswered: 0,
+    countdown: function(){
+        game.counter --;
+        $("#counter").html(game.counter);
+        if(game.counter <= 0){
+            game.timeUp();
+        }
+    },
+    // end of countdown function
 
-function timer() {
-count--;
-if (count <= 0) {
- clearInterval(counter);
- return;
-}
-// displays time remaining on page
- $("#timer").html("Time remaining: " + "00:" + count + " secs");
-}
+    loadQuestion: function(){
+        timer = setInterval(game.countdown, 1000);
+        $("#timer").html("Time remaining: 00:<span id='counter'>30</span> secs");
+        $("#questions").append(questions[game.currentQuestion].question);
+        for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
+            // I keep getting an error pointing to the line of code below that 0 is undefined but i can't figure out what went wrong.  so this game doesn't work
+            $("#answers").append('<button class="answer-button" id="button-' + i + '" data-name="' + questions[game.currentQuestion].answers[i] + '">'+questions[game.currentQuestion].answer[i]+'</button>');
+        }
+    },
+    // end of loadQuestion function
 
-// displays our trivia question and answer options to the user
-function startGame() {
-$("#questions").html(questions[0].questionNo);
-questionNo++;
+    nextQuestion: function(){
+        game.counter = 30;
+        $("#counter").html(game.counter);
+        game.currentQuestion++;
+        game.loadQuestion();
+    },
+    // end of nextQuestion function
 
-  var answersArr = questions[0].answers;
-  var buttonsArr = [];
+    timeUp: function(){
+        clearInterval(timer);
+        game.unanswered++;
+        $("#timer").html("Out of Time!");
+        $("#answers").append("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
+        $("#image").append("<img src='" + questions[game.currentQuesion].image + "'>");
+        if(game.currentQuestion == questions.length -1) {
+            setTimeout(game.results, 3 * 1000);
+        } else {
+            setTimeout(game.nextQuestion, 3 * 1000);
+        }
+    },
+    // end of timeUp function
 
-// loop
-  for (var i = 0; i < answersArr.length; i++) {
-    var button = $("<button>");
-    button.text(answersArr[i]);
-    button.attr("data-id", i);
-    $("#answers").append(button);
-   }
-} 
+    results: function() { 
+        clearInterval(timer);
+        $("#subwrapper").html("<h2>Finished</h2>");
+        $("#subwrapper").append("<h3>Correct: " + game.correct + "</h3>");
+        $("#subwrapper").append("<h3>Incorrect: " + game.incorrect + "</h3>");
+        $("#subwrapper").append("<h3>Unanswered: " + game.unanswered + "</h3>");
+        $("#subwrapper").append("<button id='reset'>Try Again</button>");
+    },
+    // end of results function
 
- $("#answers").click("button", function(e) {
-    userChoice = $(this).data("id");
-    questions[0].answerIndex;
+    clicked: function(event) {
+        clearInterval(timer);
+        if($(event.target).data("name")==questions[game.currentQuestion].correctAnswer){
+            game.answeredCorrectly();
+        } else {
+            game.answeredIncorrectly();
+        }
+    },
+    // end of clicked function
 
-    if (userChoice != questions[0].answerIndex) {
+    answeredCorrectly: function(){
+        clearInterval(timer);
+        game.correct++;
+        $("#subwrapper").html("<h2> Correct! </h2>");
+        $("#answers").append("The correct answer is: " + questions[game.currentQuestion].correctAnswer);
+        $("#image").append("<img src='" + questions[game.currentQuesion].image + "'>");
+        if (game.currentQuestion == questions.legnth -1) {
+            setTimeout(game.results, 3 * 1000);
+        } else {
+            setTimeout(game.nextQuestion, 3 * 1000);
+        }
+    },
+    // end of answeredCorrectly function
 
-        $("#answers").text("Wrong Answer! The correct answer is" + questions[0].answerIndex + ".");
-        wrong++;
-        //  I want to pull the image from the index to display in the div. This is not working yet.
-        $("#image").prepend("<img src=" + "assets/images/nozdormu.jpg" + ">");
+    answeredIncorrectly: function(){
+        clearInterval(timer);
+        game.incorrect++;
+        $("#subwrapper").html("<h2> Wrong! </h2>");
+        $("#answers").append("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
+        $("#image").append("<img src='" + questions[game.currentQuesion].image + "'>");
+        if (game.currentQuestion == questions.legnth -1) {
+            setTimeout(game.results, 3 * 1000);
+        } else {
+            setTimeout(game.nextQuestion, 3 * 1000);
+        }
+    },
+    // end of answeredIncorrectly function
 
-    } else if (userChoice === questions[0].answerIndex) {
-        $("#answers").text("Correct!");
-        correct++;
-        //  I want to pull the image from the index to display in the div. This is not working yet.
-        $("#image").prepend("<img src=" + "assets/images/nozdormu.jpg" + ">");
+    reset: function(){
+        game.currentQuestion = 0;
+        game.counter = 0;
+        game.correct = 0;
+        game.incorrect = 0;
+        game.unanswered = 0;
+        game.loadQuestion();
     }
-});
-
+    // end of reset function
+};
+// end of game variable
