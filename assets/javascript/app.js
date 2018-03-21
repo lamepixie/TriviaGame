@@ -87,10 +87,10 @@ var game = {
     loadQuestion: function() {
         timer = setInterval(game.countdown, 1000);
         $("#timer").html("[SERVER]Reset in: 00:<span id='counter'>30</span> secs");
-        $("#questions").append(questions[game.currentQuestion].question);
+        $("#questions").html(questions[game.currentQuestion].question);
         for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
             // I keep getting an error pointing to the line of code below that 0 is undefined but i can't figure out what went wrong.  so this game doesn't work
-            $("#answers").html("<button class='answer-button' id='button-" + i + " data-name='" + questions[game.currentQuestion].answers[i] + '">'+questions[game.currentQuestion].answer[i]+'</button>');
+            $("#answers").append("<button class='answer-button' id='button-" + i + "' data-name='" + questions[game.currentQuestion].answers[i] + "'>" + questions[game.currentQuestion].answers[i] +"</button>");
         }
     },
     // end of loadQuestion function
@@ -140,7 +140,7 @@ var game = {
     answeredCorrectly: function() {
         clearInterval(timer);
         game.correct++;
-        $("#subwrapper").html("<h2> Correct! </h2>");
+        $("#question").html("<h2> Correct! </h2>");
         $("#answers").html("The correct answer is: " + questions[game.currentQuestion].correctAnswer);
         $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         if (game.currentQuestion == questions.legnth -1) {
@@ -154,7 +154,7 @@ var game = {
     answeredIncorrectly: function() {
         clearInterval(timer);
         game.incorrect++;
-        $("#subwrapper").html("<h2> Wrong! </h2>");
+        $("#question").html("<h2> Wrong! </h2>");
         $("#answers").html("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
         $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         if (game.currentQuestion == questions.legnth -1) {
