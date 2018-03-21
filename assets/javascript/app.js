@@ -1,3 +1,6 @@
+$( document ).ready(function() {
+    $("#reset").hide();
+});
 // when the user clicks our start button, the game will begin
 $("#start").on("click", function() {
     $("#start").remove();
@@ -14,8 +17,9 @@ $(document).on("click", ".answer-button", function(event) {
 })
 
 // not working but ideally should reset the game.
-$(".reset").on("click", function () {
-    game.reset();
+$("#reset").on("click", function () {
+    location.reload();
+    // game.reset();
 })
 
 // This array containts all of our questions and answer options, as well as correct answers.
@@ -146,7 +150,7 @@ var game = {
         $("#subwrapper").append("<h3>Correct: " + game.correct + "</h3>");
         $("#subwrapper").append("<h3>Incorrect: " + game.incorrect + "</h3>");
         $("#subwrapper").append("<h3>Unanswered: " + game.unanswered + "</h3>");
-        $("#subwrapper").append("<button class='reset'>Turn back the sands of time and try again?</button>");
+        $("#reset").show();
     },
     // end of results function
 
@@ -190,7 +194,7 @@ var game = {
     },
     // end of answeredIncorrectly function
 
-    // should reset the game, but it's not working.
+    // NOT sure this is needed anymore.
     reset: function() {
         game.currentQuestion = 0;
         game.counter = 0;
