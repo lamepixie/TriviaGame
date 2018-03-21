@@ -1,6 +1,8 @@
+// hiding our reset button
 $( document ).ready(function() {
     $("#reset").hide();
 });
+
 // when the user clicks our start button, the game will begin
 $("#start").on("click", function() {
     $("#start").remove();
@@ -16,10 +18,9 @@ $(document).on("click", ".answer-button", function(event) {
     game.clicked(event);
 })
 
-// not working but ideally should reset the game.
+// allows our game to reset so the user can play again!
 $("#reset").on("click", function () {
     location.reload();
-    // game.reset();
 })
 
 // This array containts all of our questions and answer options, as well as correct answers.
@@ -49,13 +50,13 @@ var questions = [{
     fact: "Jaina is the most powerful human sorceress alive and was a former leader of the Kirin Tor."
 }, 
 {   question: "What is the name of the Lich King's sword?",
-    answers: ["Glamdring","Taeshalach","Light's Vengeance", "Frostmourne"],
+    answers: ["Glamdring","Byfrost","Taeshalach","Frostmourne"],
     image: "assets/images/frostmourne.jpg",
     correctAnswer: "Frostmourne",
     fact: "Frostmourne was destroyed by Tirion Fordring following the Lich King's defeat in Icecrown Citadel."
  }, 
  {  question: "Azeroth is <i>not</i> the native home for which horde race?",
-    answers: ["Goblin","Tauren","Orc", "Draenei"],
+    answers: ["Goblin","Tauren","Orc","Draenei"],
     image: "assets/images/orc.jpg",
     correctAnswer: "Orc",
     fact: "Orc's are one of the most prolific races on Azeroth today, but originally hail from the alien world of Draenor."
@@ -70,7 +71,7 @@ var questions = [{
     answers: ["Silvermoon City","Thunder Bluff","Stormwind City","Garadar"],
     image: "assets/images/stormwind.png",
     correctAnswer: "Stormwind City",
-    fact: "Located north of Elwynn Forest on the Eastern Kingdom's, Stormwind is the largest human city of Azeroth."
+    fact: "Located north of Elwynn Forest on Eastern Kingdoms, Stormwind is the largest human city of Azeroth."
 }, 
 {   question: "Deathwing the Destroyer, formerly known as Neltharion the Earth-Warder, was the leader of which dragonflight?",
     answers: ["Black","Bronze","Red","Fire"],
@@ -132,13 +133,13 @@ var game = {
         clearInterval(timer);
         game.unanswered++;
         $("#timer").html("Out of Time!");
-        $("#answers").html("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
+        $("#answers").html("The correct answer is: " + questions[game.currentQuestion].correctAnswer) + ".";
         $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         $("#fact").html(questions[game.currentQuestion].fact);
         if(game.currentQuestion == questions.length -1) {
-            setTimeout(game.results, 3 * 1000);
+            setTimeout(game.results, 8 * 1000);
         } else {
-            setTimeout(game.nextQuestion, 3 * 1000);
+            setTimeout(game.nextQuestion, 8 * 1000);
         }
     },
     // end of timeUp function
@@ -156,7 +157,7 @@ var game = {
 
     clicked: function(event) {
         clearInterval(timer);
-        if($(event.target).data("name")==questions[game.currentQuestion].correctAnswer){
+        if($(event.target).data("name") == questions[game.currentQuestion].correctAnswer){
             game.answeredCorrectly();
         } else {
             game.answeredIncorrectly();
@@ -168,13 +169,13 @@ var game = {
     answeredCorrectly: function() {
         clearInterval(timer);
         game.correct++;
-        $("#answers").html("That is correct! The answer is " + questions[game.currentQuestion].correctAnswer);
+        $("#answers").html("You are correct! The answer is " + questions[game.currentQuestion].correctAnswer + ".");
         $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         $("#fact").html(questions[game.currentQuestion].fact);
         if (game.currentQuestion == questions.length -1) {
-            setTimeout(game.results, 3 * 1000);
+            setTimeout(game.results, 8 * 1000);
         } else {
-            setTimeout(game.nextQuestion, 3 * 1000);
+            setTimeout(game.nextQuestion, 8 * 1000);
         }
     },
     // end of answeredCorrectly function
@@ -183,26 +184,15 @@ var game = {
     answeredIncorrectly: function() {
         clearInterval(timer);
         game.incorrect++;
-        $("#answers").html("Sorry, the correct answer was " + questions[game.currentQuestion].correctAnswer);
+        $("#answers").html("Sorry, you chose " + $(event.target).data("name") + ". The correct answer is " + questions[game.currentQuestion].correctAnswer) + ".";
         $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         $("#fact").html(questions[game.currentQuestion].fact);
         if (game.currentQuestion == questions.length -1) {
-            setTimeout(game.results, 3 * 1000);
+            setTimeout(game.results, 8 * 1000);
         } else {
-            setTimeout(game.nextQuestion, 3 * 1000);
+            setTimeout(game.nextQuestion, 8 * 1000);
         }
     },
     // end of answeredIncorrectly function
-
-    // NOT sure this is needed anymore.
-    reset: function() {
-        game.currentQuestion = 0;
-        game.counter = 0;
-        game.correct = 0;
-        game.incorrect = 0;
-        game.unanswered = 0;
-        game.loadQuestion();
-    }
-    // end of reset function
 };
 // end of game variable

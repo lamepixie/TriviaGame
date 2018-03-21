@@ -4,6 +4,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    color: rgb(83, 6, 6);
 }
 
 .center {
@@ -16,7 +17,7 @@ body {
     text-align: center;
 }
 
-.quote {
+.quote, h2 {
     font-family: 'Romanesco', cursive;
     color: rgb(83, 6, 6);
     font-size: 30px;
@@ -56,6 +57,7 @@ button:hover {
 }
 
 #start, #reset:hover {
+    font-family: 'Amiri', serif;
     border: 2px solid rgb(190, 138, 95);
     color:  rgb(83, 6, 6);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -72,6 +74,19 @@ button:hover {
     color: rgb(75, 71, 71);
 }
 
+h2 {
+    font-family: 'Romanesco', cursive;
+    color: rgb(83, 6, 6);
+    font-size: 48px;
+    opacity: .8;
+}
+
+h3 {
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    color: rgb(83, 6, 6);
+}
+
 img {
     width: 50%;
     height: auto;
@@ -85,4 +100,5 @@ img {
 #timer {
     color: goldenrod;
     font-weight: 700;
+    padding-bottom: 15px;
 }
