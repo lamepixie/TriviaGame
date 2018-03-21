@@ -42,7 +42,7 @@ button:hover {
     opacity: 1;
 }
 
-#start {
+#start, #reset {
     background-color: goldenrod;
     border: 2px solid goldenrod;
     color:  rgb(119, 84, 7);
@@ -55,7 +55,7 @@ button:hover {
     transition-duration: 0.4s;
 }
 
-#start:hover {
+#start, #reset:hover {
     border: 2px solid rgb(190, 138, 95);
     color:  rgb(83, 6, 6);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -80,4 +80,9 @@ img {
 
 .logo {
     width: 250px;
+}
+
+#timer {
+    color: goldenrod;
+    font-weight: 700;
 }

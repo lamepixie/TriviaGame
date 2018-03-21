@@ -1,14 +1,18 @@
+// when the user clicks our start button, the game will begin
 $("#start").on("click", function() {
     $("#start").remove();
+    $(".quote").remove();
+    //  and play our nice song
     bgmMusic.play();
+    bgmMusic.loop = true;
     game.loadQuestion();
 })
 
 $(document).on("click", ".answer-button", function(event) {
-    game.clicked(e);
+    game.clicked(event);
 })
 
-$(document).on("click", "#reset", function(){
+$(document).on("click", "#reset", function() {
     game.reset();
 })
 
@@ -26,7 +30,7 @@ var questions = [{
 }, 
 {   question: "What is the level cap in the Wrath of the Lich King expansion?",
     answers: ["75","60","80","55"],
-    image: "/assets/images/wrath.jpg",
+    image: "assets/images/wrath.jpg",
     correctAnswer: "80"
 }, 
 {   question: "Jaina Proudmoore is the founder and former lady of what region in Kalimdor?",
@@ -62,6 +66,7 @@ var questions = [{
 
 var bgmMusic = new Audio("assets/sounds/wow_maintitle.mp3")
 
+// our entire game is held within this variable
 var game = {
     questions: questions,
     currentQuestion: 0,
@@ -69,7 +74,7 @@ var game = {
     correct: 0,
     incorrect: 0,
     unanswered: 0,
-    countdown: function(){
+    countdown: function() {
         game.counter --;
         $("#counter").html(game.counter);
         if(game.counter <= 0){
@@ -78,18 +83,19 @@ var game = {
     },
     // end of countdown function
 
-    loadQuestion: function(){
+    //  currently having a huge problem in this area.  I cannot get the buttons to load for the answer options 
+    loadQuestion: function() {
         timer = setInterval(game.countdown, 1000);
-        $("#timer").html("Time remaining: 00:<span id='counter'>30</span> secs");
+        $("#timer").html("[SERVER]Reset in: 00:<span id='counter'>30</span> secs");
         $("#questions").append(questions[game.currentQuestion].question);
         for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
             // I keep getting an error pointing to the line of code below that 0 is undefined but i can't figure out what went wrong.  so this game doesn't work
-            $("#answers").append('<button class="answer-button" id="button-' + i + '" data-name="' + questions[game.currentQuestion].answers[i] + '">'+questions[game.currentQuestion].answer[i]+'</button>');
+            $("#answers").html("<button class='answer-button' id='button-" + i + " data-name='" + questions[game.currentQuestion].answers[i] + '">'+questions[game.currentQuestion].answer[i]+'</button>');
         }
     },
     // end of loadQuestion function
 
-    nextQuestion: function(){
+    nextQuestion: function() {
         game.counter = 30;
         $("#counter").html(game.counter);
         game.currentQuestion++;
@@ -97,12 +103,12 @@ var game = {
     },
     // end of nextQuestion function
 
-    timeUp: function(){
+    timeUp: function() {
         clearInterval(timer);
         game.unanswered++;
         $("#timer").html("Out of Time!");
-        $("#answers").append("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
-        $("#image").append("<img src='" + questions[game.currentQuesion].image + "'>");
+        $("#answers").html("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
+        $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         if(game.currentQuestion == questions.length -1) {
             setTimeout(game.results, 3 * 1000);
         } else {
@@ -113,11 +119,11 @@ var game = {
 
     results: function() { 
         clearInterval(timer);
-        $("#subwrapper").html("<h2>Finished</h2>");
+        $("#subwrapper").html("<h2>Finished!</h2>");
         $("#subwrapper").append("<h3>Correct: " + game.correct + "</h3>");
         $("#subwrapper").append("<h3>Incorrect: " + game.incorrect + "</h3>");
         $("#subwrapper").append("<h3>Unanswered: " + game.unanswered + "</h3>");
-        $("#subwrapper").append("<button id='reset'>Try Again</button>");
+        $("#subwrapper").append("<button id='reset'>Turn back the sands of time and try again?</button>");
     },
     // end of results function
 
@@ -131,12 +137,12 @@ var game = {
     },
     // end of clicked function
 
-    answeredCorrectly: function(){
+    answeredCorrectly: function() {
         clearInterval(timer);
         game.correct++;
         $("#subwrapper").html("<h2> Correct! </h2>");
-        $("#answers").append("The correct answer is: " + questions[game.currentQuestion].correctAnswer);
-        $("#image").append("<img src='" + questions[game.currentQuesion].image + "'>");
+        $("#answers").html("The correct answer is: " + questions[game.currentQuestion].correctAnswer);
+        $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         if (game.currentQuestion == questions.legnth -1) {
             setTimeout(game.results, 3 * 1000);
         } else {
@@ -145,12 +151,12 @@ var game = {
     },
     // end of answeredCorrectly function
 
-    answeredIncorrectly: function(){
+    answeredIncorrectly: function() {
         clearInterval(timer);
         game.incorrect++;
         $("#subwrapper").html("<h2> Wrong! </h2>");
-        $("#answers").append("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
-        $("#image").append("<img src='" + questions[game.currentQuesion].image + "'>");
+        $("#answers").html("The correct answer was: " + questions[game.currentQuestion].correctAnswer);
+        $("#image").html("<img src='" + questions[game.currentQuestion].image + "'>");
         if (game.currentQuestion == questions.legnth -1) {
             setTimeout(game.results, 3 * 1000);
         } else {
@@ -159,7 +165,7 @@ var game = {
     },
     // end of answeredIncorrectly function
 
-    reset: function(){
+    reset: function() {
         game.currentQuestion = 0;
         game.counter = 0;
         game.correct = 0;
