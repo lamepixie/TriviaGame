@@ -61,7 +61,7 @@ var questions = [{
     answers: ["Goblin","Tauren","Orc","Draenei"],
     image: "assets/images/orc.jpg",
     correctAnswer: "Orc",
-    fact: "Orc's are one of the most prolific races on Azeroth today, but originally hail from the alien world of Draenor."
+    fact: "Orcs are one of the most prolific races on Azeroth today, but originally hail from the alien world of Draenor."
 }, 
 {   question: "Who is a prominent Night Elf leader and high priestess of Elune?",
     answers: ["Jarod Shadowsong","Illidan Stormrage","Queen Azshara","Tyrande Whisperwind"],
