@@ -44,6 +44,7 @@ button:hover {
 }
 
 #start, #reset {
+    font-family: 'Amiri', serif;
     background-color: goldenrod;
     border: 2px solid goldenrod;
     color:  rgb(119, 84, 7);
@@ -54,6 +55,12 @@ button:hover {
     border-radius: 8px;
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
+}
+#fact {
+    background-color: rgb(247, 220, 148);
+    border-radius: 6px;
+    opacity: .9;
+
 }
 
 #start, #reset:hover {

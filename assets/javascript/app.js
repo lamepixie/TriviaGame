@@ -1,6 +1,7 @@
 // hiding our reset button
 $( document ).ready(function() {
     $("#reset").hide();
+    $("#fact").hide();
 });
 
 // when the user clicks our start button, the game will begin
@@ -16,6 +17,7 @@ $("#start").on("click", function() {
 // enables our answer buttons to register correctly based on user choice
 $(document).on("click", ".answer-button", function(event) {
     game.clicked(event);
+    $("#fact").show();
 })
 
 // allows our game to reset so the user can play again!
@@ -118,6 +120,7 @@ var game = {
 
     // moves onto the next question after it has been answered or there's been a timeUp
     nextQuestion: function() {
+        $("#fact").hide();
         game.counter = 30;
         $("#counter").html(game.counter);
         game.currentQuestion++;
