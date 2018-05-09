@@ -10,3 +10,19 @@ If the user does not select an answer within the 30 second timeframe, the game r
 * Photos of notable characters and locations throughout Azeroth
 * Will cause user to have a good time :)
 
+### Screen Grabs
+
+*Opening Screen*
+![Opening Screen](assets/images/starting.JPG)
+
+*Question Screen*
+![Question Screen](assets/images/question.JPG)
+
+*Answer Screen*
+![Answer Screen](assets/images/answer.JPG)
+
+*Out of Time Screen*
+![Out of Time Screen](assets/images/oot.JPG)
+
+*End Game Screen*
+![End Game Screen](assets/images/endscreen.JPG)
