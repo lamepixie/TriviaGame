@@ -6,7 +6,7 @@ The user has 30 seconds to choose their answers to each question, and may only s
 If the user does not select an answer within the 30 second timeframe, the game records it as "unanswered" and will move onto the next question.
 
 ## Features!
-1. Music from World of Warcraft
-2. Photos of notable characters and locations throughout Azeroth
-3. Will cause user to have a good time :)
+* Music from World of Warcraft
+* Photos of notable characters and locations throughout Azeroth
+* Will cause user to have a good time :)
 
