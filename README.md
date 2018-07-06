@@ -6,9 +6,7 @@ The user has 30 seconds to choose their answers to each question, and may only s
 If the user does not select an answer within the 30 second timeframe, the game records it as "unanswered" and will move onto the next question.
 
 Click the link below to play!
-```
-git clone https://lamepixie.github.io/Trivia_of_Warcraft/ 
-```
+[Trivia of Warcraft!](https://lamepixie.github.io/Trivia_of_Warcraft/)
 
 ## Features!
 * Music from World of Warcraft
