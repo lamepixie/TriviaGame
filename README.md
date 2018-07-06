@@ -5,7 +5,7 @@ A basic trivia game with timed questions.
 The user has 30 seconds to choose their answers to each question, and may only select one answer to each question.
 If the user does not select an answer within the 30 second timeframe, the game records it as "unanswered" and will move onto the next question.
 
-Click the link below to play!
+Play the game: 
 [Trivia of Warcraft!](https://lamepixie.github.io/Trivia_of_Warcraft/)
 
 ## Features!
